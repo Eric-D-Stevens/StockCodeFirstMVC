@@ -1,0 +1,107 @@
+﻿@using StockCodeFirstMVC.Models
+@Model List<User>
+
+@{
+    ViewBag.Title = "AddOrder";
+}
+
+<h2>AddOrder</h2>
+
+
+
+@using (Html.BeginForm("AddOrderButton", "Home", FormMethod.Post))
+{
+    <div class="row no-gutters">
+        <div class="form-group col-12">
+            <div class="row ">
+                <div class="col-sm-3">
+                    <select class="form-control" name="userId" >
+                        <option value="" >User ID</option> 
+                        @foreach (var user in Model)
+                        {
+                            <option value=@user.UserId>@user.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <input name="symbol" type="text" class="form-control" placeholder="SYM" />
+                </div>
+                <div class="col-sm-3">
+                    <input name="quantity" type="number" class="form-control" placeholder="QTY" />
+                </div>
+                <div class="col-sm-3">
+                    <input name="pricePaid" type="text" class="form-control" placeholder="Price" />
+                </div></div>
+        </div>
+        <button type="submit" class="btn btn-block btn-primary">Place This Order</button>
+    </div>
+
+}
+
+
+
+<row>
+    <h3>Current Orders</h3>
+</row>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Order ID</th>
+            <th scope="col">User Name</th>
+            <th scope="col">User ID</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+            <th scope="col">Time Stamp</th>
+        </tr>
+    </thead>
+    <tbody>
+        @using (var db = new StockContext())
+        {
+            var orderList = db.Orders.ToList();
+            foreach (Order order in orderList)
+            {
+                <tr>
+                    <th scope="row">@order.OrderId</th>
+                    <td>@order.UserName</td>
+                    <td>@order.UserId</td>
+                    <td>@order.Symbol</td>
+                    <td>@order.Quantity</td>
+                    <td>@order.PricePaid</td>
+                    <td>@order.DateAndTime.ToString()</td>
+                </tr>
+            }
+
+        }
+
+    </tbody>
+</table>
+
+<div class="row">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-4">
+        <h2>Add User</h2>
+        <p>
+            Use this page to add users to the database. After a user is added
+            you will be able to manipulate your contrcts from other pages.
+            Currently you will only be able to Buy Stocks, but features will be
+            added soon.
+        </p>
+        <p><a class="btn btn-default" href="@Href("~/Home/AddUser")">Add User &raquo;</a></p>
+    </div>
+    <div class="col-sm-4">
+        <h2>Add Order</h2>
+        <p>
+            Use this page to manipulate user orders. On this page, select a user
+            and choose an action. Currently you are only able to buy stock but
+            further functionality will be added soon.
+        </p>
+        <p><a class="btn btn-default" href="@Href("~/Home/AddOrder")">Add Order &raquo;</a></p>
+    </div>
+    <div class="col-sm-2">
+    </div>
+</div>
+

@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Buy Stocks</h1>
+    <p class="lead">This is a Entity Framework Code First Project that allows the adding of users. Once a user is added,
+    that user sill be able to place orders under their own name.</p>
+</div>
+
+<div class="row">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-4">
+        <h2>Add User</h2>
+        <p>
+            Use this page to add users to the database. After a user is added 
+            you will be able to manipulate your contrcts from other pages. 
+            Currently you will only be able to Buy Stocks, but features will be 
+            added soon.
+        </p>
+        <p><a class="btn btn-default" href="@Href("~/Home/AddUser")">Add User &raquo;</a></p>
+    </div>
+    <div class="col-sm-4">
+        <h2>Add Order</h2>
+        <p>
+            Use this page to manipulate user orders. On this page, select a user 
+            and choose an action. Currently you are only able to buy stock but 
+            further functionality will be added soon.
+        </p>
+        <p><a class="btn btn-default" href="@Href("~/Home/AddOrder")">Add Order &raquo;</a></p>
+    </div>
+    <div class="col-sm-2">
+    </div>
+</div>

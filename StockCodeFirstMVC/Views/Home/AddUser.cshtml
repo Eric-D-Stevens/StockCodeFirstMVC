@@ -1,0 +1,66 @@
+﻿@using StockCodeFirstMVC.Models
+@Model List<User>
+@{
+    ViewBag.Title = "AddUser";
+}
+
+<h2>AddUser</h2>
+
+@using (Html.BeginForm("AddUserButton", "Home", FormMethod.Post))
+{
+    <div class="row no-gutters">
+        <div class="form-group col-12">
+            <input name="userName" type="text" class="form-control" placeholder="User Name" />
+        </div>
+        <button type="submit" class="btn btn-block btn-primary">Add This User</button>
+    </div>
+}
+ 
+<row>
+    <h3>Current Users</h3>
+</row>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">User ID</th>
+            <th scope="col">User Name</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <th scope="row">@user.UserId</th>
+            <td>@user.Name</td>
+        </tr>
+    }        
+    </tbody>
+</table>
+
+<div class="row">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-4">
+        <h2>Add User</h2>
+        <p>
+            Use this page to add users to the database. After a user is added
+            you will be able to manipulate your contrcts from other pages.
+            Currently you will only be able to Buy Stocks, but features will be
+            added soon.
+        </p>
+        <p><a class="btn btn-default" href="@Href("~/Home/AddUser")">Add User &raquo;</a></p>
+    </div>
+    <div class="col-sm-4">
+        <h2>Add Order</h2>
+        <p>
+            Use this page to manipulate user orders. On this page, select a user
+            and choose an action. Currently you are only able to buy stock but
+            further functionality will be added soon.
+        </p>
+        <p><a class="btn btn-default" href="@Href("~/Home/AddOrder")">Add Order &raquo;</a></p>
+    </div>
+    <div class="col-sm-2">
+    </div>
+</div>
